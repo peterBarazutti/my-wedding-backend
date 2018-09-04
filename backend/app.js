@@ -2,10 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
-const eventRoutes = require('./routes/routeHandler');
+const presentRoutes = require('./routes/presents');
 
 /*UkWELb4KVPgZsfvm*/
-const mongooseDBUrl = "mongodb+srv://Peter:UkWELb4KVPgZsfvm@meantestproject-khhow.mongodb.net/node-angular?retryWrites=true";
+const mongooseDBUrl = "mongodb+srv://Peter:UkWELb4KVPgZsfvm@my-wedding-cluster-ybdzh.mongodb.net/test";
 
 const mongooseOptions = {
     useNewUrlParser: true
@@ -13,13 +13,13 @@ const mongooseOptions = {
 
 const myApp = express();
 
-/*mongoose.connect(mongooseDBUrl, mongooseOptions)
+mongoose.connect(mongooseDBUrl, mongooseOptions)
     .then(() => {
         console.log('Connected to database')
     })
     .catch(() => {
         console.log('Connection failed!')
-    });*/
+    });
 
 myApp.use(bodyParser.json());
 myApp.use(bodyParser.urlencoded({extended: false}));
@@ -38,6 +38,6 @@ myApp.use((req, res, next) => {
     next();
 });
 
-myApp.use('/api', eventRoutes);
+myApp.use('/api/presents', presentRoutes);
 
 module.exports = myApp;
