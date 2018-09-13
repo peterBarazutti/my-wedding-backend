@@ -16,17 +16,22 @@ router.post("/:userid", (req, res, next) => {
         .then((createdWedding) => {
             return User.update(
                 {_id: req.params.userid},
-                {$push: {myWeddings: createdWedding._id}},
+                {$push: {
+                        myWeddings: {
+                            weddingName: createdWedding.name,
+                            weddinId: createdWedding._id
+                        }
+                    }
+                }
             );
         })
-        .then((response)=>{
+        .then((response) => {
             res.status(201).json({
                 message: "Wedding saved to database!"
             });
         })
 
 });
-
 
 
 module.exports = router;

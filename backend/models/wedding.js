@@ -15,7 +15,7 @@ const weddingScheme = mongoose.Schema({
         required: true
     },
     guestList: {
-        type: String,
+        type: [String],
         default: []
     },
     markers: {
