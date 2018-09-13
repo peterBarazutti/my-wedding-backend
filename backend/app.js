@@ -5,6 +5,7 @@ const presentRoutes = require('./routes/presents');
 const jwt = require('express-jwt');
 const jwks = require('jwks-rsa');
 const cors = require('cors');
+const weddingRoutes = require('./routes/weddings');
 
 const myApp = express();
 
@@ -25,7 +26,7 @@ const jwtCheck = jwt({
     algorithms: ['RS256']
 });
 
-myApp.use(jwtCheck);
+// myApp.use(jwtCheck);
 
 /*UkWELb4KVPgZsfvm*/
 const mongooseDBUrl = "mongodb+srv://Peter:UkWELb4KVPgZsfvm@my-wedding-cluster-ybdzh.mongodb.net/test";
@@ -58,5 +59,7 @@ myApp.use((req, res, next) => {
 });
 
 myApp.use('/api/presents', presentRoutes);
+myApp.use('/api/weddings', weddingRoutes);
+
 
 module.exports = myApp;
