@@ -36,4 +36,17 @@ router.get("/:weddingName", (req, res, next) => {
     }
 );
 
+router.patch("/:weddingName", (req, res, next) => {
+    Wedding.update({"name": req.params.weddingName, "markers._id": req.body.id},
+        {
+            $set: {
+                "markers.$.lat": req.body.lat, "markers.$.lng": req.body.lng
+            }
+        }
+    )
+        .then((response) => res.json({resp: response}))
+
+
+});
+
 module.exports = router;
