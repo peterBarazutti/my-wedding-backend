@@ -8,11 +8,11 @@ const userScheme = mongoose.Schema({
     },
 
     myWeddings: {
-        type: [Object],
+        type: [String],
         default: []
     },
     guestWeddings: {
-        type: [Object],
+        type: [String],
         default: []
     }
 });
