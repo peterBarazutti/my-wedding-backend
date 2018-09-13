@@ -25,12 +25,14 @@ router.post("", (req, res, next) => {
 });
 
 router.get("", (req, res, next) => {
-    res.status(200).json({
-        message: "minden ok",
-        data: presents
-    })
+    Present.find()
+        .then(presentsList => {
+            res.status(200).json({
+                message: "minden ok",
+                data: presentsList
+            });
+        });
 });
-
 
 
 module.exports = router;
