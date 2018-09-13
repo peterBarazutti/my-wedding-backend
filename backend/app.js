@@ -6,6 +6,7 @@ const jwt = require('express-jwt');
 const jwks = require('jwks-rsa');
 const cors = require('cors');
 const weddingRoutes = require('./routes/weddings');
+const userRoutes = require('./routes/users');
 
 const myApp = express();
 
@@ -60,6 +61,7 @@ myApp.use((req, res, next) => {
 
 myApp.use('/api/presents', presentRoutes);
 myApp.use('/api/weddings', weddingRoutes);
+myApp.use('/api/users', userRoutes);
 
 
 module.exports = myApp;
