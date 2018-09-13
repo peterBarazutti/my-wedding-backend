@@ -1,7 +1,4 @@
 {
-  "scripts": {
-    "start:server": "nodemon server.js"
-  },
   "compilerOptions": {
     "module": "commonjs",
     "target": "es5",
