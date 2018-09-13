@@ -54,7 +54,20 @@ router.delete("/:id", (req, res, next) => {
         });
 });
 
-
+router.put("/:id", (req, res, next) => {
+    console.log(req.body);
+    const present = new Present({
+        _id: req.body.id,
+        name: req.body.name,
+        link: req.body.link,
+        owner: req.body.owner,
+        isTaken: req.body.isTaken
+    });
+    Present.updateOne({_id: req.params.id}, present).then(result => {
+        console.log(result);
+        res.status(200).json({ message: "Update successful!"});
+        });
+});
 
 
 module.exports = router;
