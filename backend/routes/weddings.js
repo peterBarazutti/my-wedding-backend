@@ -27,5 +27,14 @@ router.post("/:userid", (req, res, next) => {
 
 });
 
+router.get("/:weddingName", ((req, res, next) => {
+            Wedding.find({name: req.params.weddingName})
+                .then((wedding) => {
+                    res.status(200).json(wedding)
+                })
+        }
+    )
+);
+
 
 module.exports = router;
