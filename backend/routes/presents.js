@@ -29,9 +29,20 @@ router.get("", (req, res, next) => {
         .then(presentsList => {
             res.status(200).json({
                 message: "minden ok",
-                data: presentsList
+                presents: presentsList
             });
         });
+});
+
+router.patch("/:id", (req,res, next) => {
+    Present.findById(req.params.id, (err, present) => {
+        present.isTaken = !present.isTaken;
+        present.save();
+    }).then(updatedPresent => {
+        res.status(200).json({
+            message: updatedPresent._id + " present's taken status updated",
+        })
+    })
 });
 
 
