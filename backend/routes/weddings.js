@@ -19,14 +19,13 @@ router.post("/:userid", (req, res, next) => {
                 {$push: {myWeddings: createdWedding.name}},
             );
         })
-        .then((response)=>{
+        .then((response) => {
             res.status(201).json({
                 message: "Wedding saved to database!"
             });
         })
 
 });
-
 
 
 module.exports = router;
