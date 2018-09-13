@@ -11,8 +11,8 @@ const presents = [
 
 router.post("", (req, res, next) => {
     const present = new Present({
-       name: req.body.name,
-       link: req.body.link
+        name: req.body.name,
+        link: req.body.link
     });
     present.save()
         .then((createdPresent) => {
@@ -27,14 +27,15 @@ router.post("", (req, res, next) => {
 router.get("", (req, res, next) => {
     Present.find()
         .then(presentsList => {
+            console.log(presentsList);
             res.status(200).json({
-                message: "minden ok",
+                message: "Returning presents!",
                 presents: presentsList
             });
         });
 });
 
-router.patch("/:id", (req,res, next) => {
+router.patch("/:id", (req, res, next) => {
     Present.findById(req.params.id, (err, present) => {
         present.isTaken = !present.isTaken;
         present.save();
@@ -44,6 +45,16 @@ router.patch("/:id", (req,res, next) => {
         })
     })
 });
+
+router.delete("/:id", (req, res, next) => {
+    Present.deleteOne({_id: req.params.id})
+        .then(result => {
+            console.log(result);
+            res.status(200).json({ message: "Present deleted!"})
+        });
+});
+
+
 
 
 module.exports = router;
