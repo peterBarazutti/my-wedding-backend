@@ -8,8 +8,9 @@ const cors = require('cors');
 const weddingRoutes = require('./routes/weddings');
 const userRoutes = require('./routes/users');
 const markerRoutes = require('./routes/markers');
-
 const myApp = express();
+
+
 
 myApp.use(bodyParser.json());
 myApp.use(bodyParser.urlencoded({extended: true}));
@@ -46,6 +47,7 @@ mongoose.connect(mongooseDBUrl, mongooseOptions)
     });
 
 
+
 myApp.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
@@ -64,6 +66,8 @@ myApp.use('/api/presents', presentRoutes);
 myApp.use('/api/weddings', weddingRoutes);
 myApp.use('/api/users', userRoutes);
 myApp.use('/api/markers', markerRoutes);
+
+
 
 
 module.exports = myApp;
