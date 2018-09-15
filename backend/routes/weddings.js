@@ -42,4 +42,11 @@ router.delete("/", ((req, res, next) =>  {
         .catch((err)=>res.status(500).json({error: err}))
 }));
 
+
+router.delete("/:weddingName", ((req, res, next) =>  {
+    Wedding.deleteOne({name: req.params.weddingName})
+        .then((response)=> res.json({message: response}))
+        .catch((err)=>res.status(500).json({error: err}))
+}));
+
 module.exports = router;
