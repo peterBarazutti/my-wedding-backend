@@ -36,5 +36,10 @@ router.get("/:weddingName", ((req, res, next) => {
     )
 );
 
+router.delete("/", ((req, res, next) =>  {
+    Wedding.deleteMany()
+        .then((response)=> res.json({message: response}))
+        .catch((err)=>res.status(500).json({error: err}))
+}));
 
 module.exports = router;

@@ -52,6 +52,8 @@ router.patch("/:weddingName", (req, res, next) => {
 
 });
 
+
+
 // router.delete("/:weddingName", (req, res, next) => {
 //     Wedding.update({"name": req.params.weddingName}, {
 //             $pull: {"markers": {$elemMatch: {"_id": req.body._id}}
