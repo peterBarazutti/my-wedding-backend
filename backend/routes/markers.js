@@ -33,6 +33,7 @@ router.get("/:weddingName", (req, res, next) => {
                     markers: response[0]["markers"]
                 })
             )
+            .catch(err=>res.status(500).json({err: err.message}))
     }
 );
 
@@ -54,14 +55,12 @@ router.patch("/:weddingName", (req, res, next) => {
 
 
 
-// router.delete("/:weddingName", (req, res, next) => {
-//     Wedding.update({"name": req.params.weddingName}, {
-//             $pull: {"markers": {$elemMatch: {"_id": req.body._id}}
-//             }
-//         },
-//         { multi: true }
-//     )
-//         .then((response) => res.json({resp: response}))
-// })
+router.delete("/:weddingName", (req, res, next) => {
+    Wedding.update({"name": req.params.weddingName},
+        {$pull: {"markers": {_id: req.body._id}}},
+        {sale: true},
+    )
+        .then((response) => res.json({resp: response}))
+});
 
 module.exports = router;
