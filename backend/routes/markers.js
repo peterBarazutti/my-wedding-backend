@@ -55,9 +55,9 @@ router.patch("/:weddingName", (req, res, next) => {
 
 
 
-router.delete("/:weddingName", (req, res, next) => {
+router.delete("/:weddingName/:markerId", (req, res, next) => {
     Wedding.update({"name": req.params.weddingName},
-        {$pull: {"markers": {_id: req.body._id}}},
+        {$pull: {"markers": {_id: req.params.markerId}}},
         {sale: true},
     )
         .then((response) => res.json({resp: response}))
