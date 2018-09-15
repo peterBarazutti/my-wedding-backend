@@ -23,7 +23,8 @@ const weddingScheme = mongoose.Schema({
             type: [{
                 name: String,
                 lat: Number,
-                lng: Number
+                lng: Number,
+                icon: String
             }],
             default: []
 

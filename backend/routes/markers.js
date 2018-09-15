@@ -40,7 +40,10 @@ router.patch("/:weddingName", (req, res, next) => {
     Wedding.update({"name": req.params.weddingName, "markers._id": req.body._id},
         {
             $set: {
-                "markers.$.lat": req.body.lat, "markers.$.lng": req.body.lng
+                "markers.$.lat": req.body.lat,
+                "markers.$.lng": req.body.lng,
+                "markers.$.name": req.body.name,
+                "markers.$.icon": req.body.icon
             }
         }
     )
