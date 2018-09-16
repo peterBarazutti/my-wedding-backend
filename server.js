@@ -61,8 +61,8 @@ io.on('connection', function (socket) {
         io.sockets.emit('message', message);
     });
 
-    // // Handle typing event
-    // socket.on('typing', function(data){
-    //     socket.broadcast.emit('typing', data);
-    // });
+    // Handle typing event
+    socket.on('feedback', function(data){
+        socket.broadcast.emit('feedback', data);
+    });
 });
