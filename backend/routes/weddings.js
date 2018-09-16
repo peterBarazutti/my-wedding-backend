@@ -37,25 +37,26 @@ router.get("/:weddingName", ((req, res, next) => {
     )
 );
 
-router.delete("/", ((req, res, next) =>  {
+router.delete("/", ((req, res, next) => {
     Wedding.deleteMany()
-        .then((response)=> res.json({message: response}))
-        .catch((err)=>res.status(500).json({error: err}))
+        .then((response) => res.json({message: response}))
+        .catch((err) => res.status(500).json({error: err}))
 }));
 
 
-router.delete("/:weddingName", ((req, res, next) =>  {
+router.delete("/:weddingName", ((req, res, next) => {
     Wedding.deleteOne({name: req.params.weddingName})
-        .then((response)=> res.json({message: response}))
-        .catch((err)=>res.status(500).json({error: err}))
+        .then((response) => res.json({message: response}))
+        .catch((err) => res.status(500).json({error: err}))
 }));
 
 
 router.get("", (req, res, next) => {
     Wedding.find()
-        .then((result)=> {
-            res.status(200).json(result)
-        })
+        .then((result) => {
+                res.status(200).json(result)
+            }
+        )
 });
 
 module.exports = router;
