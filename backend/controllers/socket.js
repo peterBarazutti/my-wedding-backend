@@ -1,4 +1,4 @@
-exports.onConnection = function (socket) {
+exports.onConnection =  (socket) => {
     console.log('a user connected widh id: ' + socket.id);
 
     // Handle message event
