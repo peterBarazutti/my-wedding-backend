@@ -12,6 +12,7 @@ router.post("/:userid", (req, res, next) => {
         place: req.body.place,
         descr: req.body.descr
     });
+
     wedding.save()
         .then((createdWedding) => {
             return User.update(

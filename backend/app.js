@@ -8,6 +8,7 @@ const cors = require('cors');
 const weddingRoutes = require('./routes/weddings');
 const userRoutes = require('./routes/users');
 const markerRoutes = require('./routes/markers');
+const guestRoutes = require('./routes/guests');
 const myApp = express();
 
 
@@ -66,6 +67,7 @@ myApp.use('/api/presents', presentRoutes);
 myApp.use('/api/weddings', weddingRoutes);
 myApp.use('/api/users', userRoutes);
 myApp.use('/api/markers', markerRoutes);
+myApp.use('/api/guests', guestRoutes);
 
 
 

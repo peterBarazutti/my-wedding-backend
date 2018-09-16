@@ -5,11 +5,11 @@ const mongoose = require('mongoose');
 
 
 router.post("", (req, res, next) => {
-    const present = new User({
+    const user = new User({
         _id: new mongoose.Types.ObjectId,
         email: req.body.email
     });
-    present.save()
+    user.save()
         .then((createdUser) => {
             console.log(createdUser);
             res.status(201).json({

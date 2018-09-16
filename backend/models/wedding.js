@@ -16,7 +16,12 @@ const weddingScheme = mongoose.Schema({
             required: true
         },
         guestList: {
-            type: [String],
+            type: [{
+                name: String,
+                email: String,
+                rsvp: String,
+                guests: Number
+            }],
             default: []
         },
         markers: {
@@ -28,14 +33,7 @@ const weddingScheme = mongoose.Schema({
             }],
             default: []
 
-        },
-        guests:
-            {
-                type: [Object],
-                default:
-                    []
-            }
-        ,
+        }
     })
 ;
 
