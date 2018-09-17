@@ -1,6 +1,7 @@
 const app = require("./backend/app");
 const debug = require("debug")("node-angular");
 const http = require("http");
+const socketController = require('./backend/controllers/socket');
 
 
 const normalizePort = val => {
@@ -51,18 +52,8 @@ server.on("listening", onListening);
 server.listen(port);
 
 
-var io = require('socket.io').listen(server);
+var io = require('socket.io')().listen(server);
 
-io.on('connection', function (socket) {
-    console.log('a user connected widh id: ' + socket.id);
 
-    // Handle message event
-    socket.on('message', function (message) {
-        io.sockets.emit('message', message);
-    });
+io.on('connection', socketController.onConnect);
 
-    // Handle typing event
-    socket.on('feedback', function (data) {
-        socket.broadcast.emit('feedback', data);
-    });
-});
