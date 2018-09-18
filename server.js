@@ -1,7 +1,7 @@
 const app = require("./backend/app");
 const debug = require("debug")("node-angular");
 const http = require("http");
-const socketController = require("./backend/controllers/socket");
+const socketController = require('./backend/controllers/socket');
 
 
 const normalizePort = val => {
@@ -52,6 +52,8 @@ server.on("listening", onListening);
 server.listen(port);
 
 
-var io = require('socket.io').listen(server);
+var io = require('socket.io')().listen(server);
 
-io.on('connection', socketController.onConnection);
+
+io.on('connection', socketController.onConnect);
+
