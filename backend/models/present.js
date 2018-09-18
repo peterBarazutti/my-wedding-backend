@@ -13,6 +13,11 @@ const presentScheme = mongoose.Schema({
         type: String,
         required: false,
         default: 'none'
+    },
+    isTaken: {
+        type: Boolean,
+        required: false,
+        default: false
     }
 });
 
