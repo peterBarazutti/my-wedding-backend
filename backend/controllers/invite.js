@@ -26,10 +26,7 @@ exports.invite = (req, res, next) => {
             res.status(500).json({err: err.message});
         else {
             console.log(info);
-            res.status(200).json({
-                message: "E-mail sent",
-                recipient: info.envelope.to
-            });
+            next();
         }
     });
 };

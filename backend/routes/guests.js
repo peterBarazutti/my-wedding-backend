@@ -15,9 +15,7 @@ router.post("/:weddingName", (req, res, next) => {
             }
         })
         .then((resp) => {
-                res.status(201).json({
-                    message: "Guest added to the guestlist of Wedding name: " + req.params.weddingName
-                })
+                // add user object if doesnt exsist todo
             }
         );
 });
