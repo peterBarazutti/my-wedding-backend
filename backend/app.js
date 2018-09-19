@@ -10,6 +10,7 @@ const userRoutes = require('./routes/users');
 const markerRoutes = require('./routes/markers');
 const guestRoutes = require('./routes/guests');
 const myApp = express();
+const inviteRoutes = require("./routes/invite");
 
 
 
@@ -41,7 +42,7 @@ const mongooseOptions = {
 
 mongoose.connect(mongooseDBUrl, mongooseOptions)
     .then(() => {
-        console.log('Connected to database')
+        console.log('Connected to database');
     })
     .catch(() => {
         console.log('Connection failed!')
@@ -68,6 +69,7 @@ myApp.use('/api/weddings', weddingRoutes);
 myApp.use('/api/users', userRoutes);
 myApp.use('/api/markers', markerRoutes);
 myApp.use('/api/guests', guestRoutes);
+myApp.use('/api/invite', inviteRoutes);
 
 
 

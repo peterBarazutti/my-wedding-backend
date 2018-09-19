@@ -50,7 +50,6 @@ router.patch("/:weddingName", (req, res, next) => {
     )
         .then((response) => res.json({resp: response}))
 
-
 });
 
 
