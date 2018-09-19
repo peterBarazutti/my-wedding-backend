@@ -13,7 +13,7 @@ exports.invite = (req, res, next) => {
 
     const mailOptions = {
         from: 'theweddingunicorn@gmail.com', // sender address
-        to: req.body.toEmail, // list of receivers
+        to: req.body.email, // list of receivers
         subject: 'Wedding invitation', // Subject line
         html: `<p><b>Dear ${req.body.toName},</b> <br> 
                     you are invited to a wedding! <br>
@@ -25,7 +25,6 @@ exports.invite = (req, res, next) => {
         if (err)
             res.status(500).json({err: err.message});
         else {
-            console.log(info);
             next();
         }
     });
