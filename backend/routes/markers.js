@@ -13,7 +13,7 @@ router.post("/:weddingName", (req, res, next) => {
                     "name": req.body.name,
                     "lat": req.body.lat,
                     "lng": req.body.lng
-                } //inserted data is the object to be inserted
+                }
             }
         })
         .then((resp) => {

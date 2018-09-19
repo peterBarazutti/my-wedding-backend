@@ -1,4 +1,6 @@
+const weddingController = require('../controllers/weddings');
 let onlineUsers = [];
+
 
 exports.onConnect = (socket) => {
     let wedding = socket.handshake.query.wedding;
@@ -15,14 +17,21 @@ exports.onConnect = (socket) => {
 
     // Handle message event
     socket.on('message', (message) => {
-        console.log(socket.id + " is messaging");
+        let messageObj = JSON.parse(message);
         socket.emit('message', message);
-        socket.broadcast.to(wedding).emit('message', message);
+        socket.broadcast.to(messageObj.wedding).emit('message', message);
+        weddingController.addMessageToWedding(messageObj.wedding, messageObj.name, messageObj.message)
     });
 
     // Handle typing event
-    socket.on('feedback', (data) => {
-        socket.broadcast.to(wedding).emit('feedback', data);
+    socket.on('feedback', (feedback) => {
+        let messageObj = JSON.parse(feedback);
+        socket.broadcast.to(messageObj.wedding).emit('feedback', feedback);
+    });
+
+    socket.on('room', (wedding) => {
+        console.log("joining room: " + wedding);
+        socket.join(wedding);
     });
 
     socket.on('disconnect', function () {

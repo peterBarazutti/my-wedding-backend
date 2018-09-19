@@ -33,6 +33,14 @@ const weddingScheme = mongoose.Schema({
             }],
             default: []
 
+        },
+        messages: {
+            type: [{
+                timestamp: Date,
+                message: String,
+                name: String
+            }],
+            default: []
         }
     })
 ;
