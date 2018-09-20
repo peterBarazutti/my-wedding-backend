@@ -27,7 +27,6 @@ router.post("", (req, res, next) => {
 router.get("", (req, res, next) => {
     Present.find()
         .then(presentsList => {
-            console.log(presentsList);
             res.status(200).json({
                 message: "Returning presents!",
                 presents: presentsList
