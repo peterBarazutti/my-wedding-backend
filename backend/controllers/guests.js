@@ -11,13 +11,13 @@ exports.addGuest = (req, res, next) => {
                 guestList: {
                     "name": req.body.name,
                     "email": req.body.email,
-                    "guests": req.body.guests
+                    "guests": req.body.guests,
+                    "rsvp": req.body.rsvp
                 }
             }
         }
     )
         .then(() => {
-            console.log("guest added.");
             next()})
 };
 
@@ -36,15 +36,12 @@ exports.updateGuest = (req, res, next) => {
         .then((response) => res.json({resp: "Guest updated"}))
         .catch(err => res.status(500).json({err: err.message}))
 
-}
+};
 
 exports.getGuests = (req, res, next) => {
     Wedding.find({name: req.params.weddingName})
-        .select('markers')
-        .then((response) => res.status(200).json({
-                message: "Operation successful.",
-                markers: response[0]["guestList"]
-            })
+        .select('guestList')
+        .then((response) => res.status(200).json(response[0]["guestList"])
         )
         .catch(err => res.status(500).json({err: err.message}))
-}
+};

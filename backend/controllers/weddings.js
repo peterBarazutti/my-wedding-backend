@@ -13,7 +13,7 @@ exports.postWedding = ((req, res, next) => {
     wedding.save()
         .then((createdWedding) => {
             return User.update(
-                {_id: req.params.userid},
+                {email: req.params.email},
                 {$push: {myWeddings: createdWedding.name}},
             );
         })

@@ -14,7 +14,6 @@ exports.addUser = (req, res, next) => {
                     });
                     user.save()
                         .then((createdUser) => {
-                            console.log(createdUser);
                             res.status(201).json(createdUser);
                         });
                 } else {

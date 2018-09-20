@@ -15,7 +15,7 @@ exports.invite = (req, res, next) => {
         from: 'theweddingunicorn@gmail.com', // sender address
         to: req.body.email, // list of receivers
         subject: 'Wedding invitation', // Subject line
-        html: `<p><b>Dear ${req.body.toName},</b> <br> 
+        html: `<p><b>Dear ${req.body.name},</b> <br> 
                     you are invited to a wedding! <br>
                     <a href="https://wedding-unicorn.herokuapp.com/${req.params.weddingName}">See the details...</a>
                     </p>`

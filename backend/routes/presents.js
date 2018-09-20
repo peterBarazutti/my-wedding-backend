@@ -16,7 +16,6 @@ router.post("", (req, res, next) => {
     });
     present.save()
         .then((createdPresent) => {
-            console.log(createdPresent);
             res.status(201).json({
                 message: "Present saved to database!",
                 presentId: createdPresent._id
@@ -27,7 +26,6 @@ router.post("", (req, res, next) => {
 router.get("", (req, res, next) => {
     Present.find()
         .then(presentsList => {
-            console.log(presentsList);
             res.status(200).json({
                 message: "Returning presents!",
                 presents: presentsList
@@ -49,13 +47,11 @@ router.patch("/:id", (req, res, next) => {
 router.delete("/:id", (req, res, next) => {
     Present.deleteOne({_id: req.params.id})
         .then(result => {
-            console.log(result);
             res.status(200).json({ message: "Present deleted!"})
         });
 });
 
 router.put("/:id", (req, res, next) => {
-    console.log(req.body);
     const present = new Present({
         _id: req.body.id,
         name: req.body.name,
@@ -64,7 +60,6 @@ router.put("/:id", (req, res, next) => {
         isTaken: req.body.isTaken
     });
     Present.updateOne({_id: req.params.id}, present).then(result => {
-        console.log(result);
         res.status(200).json({ message: "Update successful!"});
         });
 });
