@@ -4,13 +4,13 @@ const mongoose = require("mongoose");
 const presentRoutes = require('./routes/presents');
 const jwt = require('express-jwt');
 const jwks = require('jwks-rsa');
+const jwtDecode = require('jwt-decode');
 const cors = require('cors');
 const weddingRoutes = require('./routes/weddings');
 const userRoutes = require('./routes/users');
 const markerRoutes = require('./routes/markers');
 const guestRoutes = require('./routes/guests');
 const myApp = express();
-
 
 
 myApp.use(bodyParser.json());
@@ -30,7 +30,7 @@ const jwtCheck = jwt({
     algorithms: ['RS256']
 });
 
-// myApp.use(jwtCheck);
+myApp.use(jwtCheck);
 
 /*UkWELb4KVPgZsfvm*/
 const mongooseDBUrl = "mongodb+srv://Peter:UkWELb4KVPgZsfvm@my-wedding-cluster-ybdzh.mongodb.net/test";
@@ -47,6 +47,12 @@ mongoose.connect(mongooseDBUrl, mongooseOptions)
         console.log('Connection failed!')
     });
 
+// custon middleware to access idToken and forward user's email
+myApp.use((req, res, next) => {
+    var decoded = jwtDecode(req.headers.supersecretuserauthenticationheader);
+    req.userEmail = decoded.email;
+    next();
+});
 
 
 myApp.use((req, res, next) => {
@@ -68,8 +74,5 @@ myApp.use('/api/weddings', weddingRoutes);
 myApp.use('/api/users', userRoutes);
 myApp.use('/api/markers', markerRoutes);
 myApp.use('/api/guests', guestRoutes);
-
-
-
 
 module.exports = myApp;
