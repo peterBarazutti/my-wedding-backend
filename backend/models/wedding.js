@@ -2,10 +2,13 @@ const mongoose = require('mongoose');
 
 
 const weddingScheme = mongoose.Schema({
-        _id: mongoose.Schema.Types.ObjectId,
         name: {
             type: String,
             required: true,
+        },
+        adminEmail: {
+          type: String,
+          required: true,
         },
         place: {
             type: String,
@@ -32,7 +35,6 @@ const weddingScheme = mongoose.Schema({
                 icon: String
             }],
             default: []
-
         }
     })
 ;

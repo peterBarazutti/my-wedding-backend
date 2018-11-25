@@ -47,7 +47,7 @@ mongoose.connect(mongooseDBUrl, mongooseOptions)
         console.log('Connection failed!')
     });
 
-// custon middleware to access idToken and forward user's email
+//custon middleware to access idToken and forward user's email
 myApp.use((req, res, next) => {
     var decoded = jwtDecode(req.headers.supersecretuserauthenticationheader);
     req.userEmail = decoded.email;
